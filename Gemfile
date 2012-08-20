@@ -6,6 +6,7 @@ group :development, :test do
 gem 'sqlite3', '1.3.5'
 gem 'rspec-rails', '2.10.0'
 end
+gem 'annotate', '2.5.0', group: :development
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 # gem 'sqlite3'
@@ -28,7 +29,7 @@ end
 #gem 'pg', '0.12.2'
 #end
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.1'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 # Use unicorn as the app server
