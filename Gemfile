@@ -24,12 +24,9 @@ gem 'rb-inotify', '0.8.8'
 gem 'libnotify', '0.5.9'
 gem 'factory_girl_rails', '1.4.0'
 end
-#group :production do
-#gem 'pg', '0.12.2'
-#end
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-# gem 'sqlite3'
 # Gems used only for assets and not required
 # in production environments by default.
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
