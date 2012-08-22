@@ -26,8 +26,16 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
-	it { should be_valid }
+  it { should be_valid }
   it { should_not be_admin }
+
+  describe "accessible attributes" do 
+    it "should not allow access to admin" do
+      expect do
+        User.new(admin: "1")
+      end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
 
   describe "with admin attribute set to 'true'" do
     before do
@@ -83,7 +91,7 @@ describe User do
 
     it { should_not be_valid }
   end
-
+  
   describe "email address with mixed case" do
     let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
 
@@ -98,7 +106,7 @@ describe User do
     before { @user.password = @user.password_confirmation = " " }
     it { should_not be_valid }
   end
-
+  
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch" }
     it { should_not be_valid }
@@ -113,6 +121,7 @@ describe User do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
+
 
   describe "return value of authenticate method" do
     before { @user.save }
@@ -129,8 +138,9 @@ describe User do
       specify { user_for_invalid_password.should be_false }
     end
   end
+
     describe "remember token" do
       before { @user.save }
-        its(:remember_token) { should_not be_blank }
+      its(:remember_token) { should_not be_blank }
     end
-end
+  end
