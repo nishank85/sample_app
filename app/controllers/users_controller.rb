@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
