@@ -42,7 +42,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
-
+gem 'thin'
 group :test, :development do
   gem 'rspec-rails', '2.10.0'
   gem 'guard-rspec', '0.5.5'
