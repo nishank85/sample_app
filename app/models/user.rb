@@ -22,11 +22,11 @@ class User < ActiveRecord::Base
   #before_save { self.email.downcase! }
   before_save :create_remember_token
   #before_save { |user| user.remember_token = "dafd" }
-  validates :name,  presence: true, length: { maximum: 50 }
+  validates :name,  presence: true, length: { maximum: 50, :if => Proc.new{ |user| user.name.present?} }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, :if => Proc.new{ |user| user.email.present? } }, uniqueness: { case_sensitive: false } 
+  validates :password, length: { minimum: 6, :if => Proc.new{ |user| user.password.present?} }
+  validates :password_confirmation, presence: true, :if => Proc.new{ |user| user.password_confirmation.present?}
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
