@@ -17,7 +17,7 @@ before_filter :admin_user,     only: :destroy
   end 
 
   def create
-    @user = User.new
+    @user = User.new(params[:user])
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
