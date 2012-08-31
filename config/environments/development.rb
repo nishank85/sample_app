@@ -35,3 +35,11 @@ SampleApp::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+PAYPAL_EXPRESS = ActiveMerchant::Billing::PaypalExpressGateway.new(
+  :login => "seller_1346140438_biz_api1.idyllic-software.com",
+  :password => "1346140461",
+  :signature => "AhWJzcKK4iGyBEf9WpoTK74D1qAXAq3-y.O4SEBDzjyn9vcKalWZrfdu"
+)
+
+ActiveMerchant::Billing::Base.mode = :test

@@ -19,9 +19,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
   before_save { |user| user.email = email.downcase }
-  #before_save { self.email.downcase! }
   before_save :create_remember_token
-  #before_save { |user| user.remember_token = "dafd" }
+  
   validates :name,  presence: true, length: { maximum: 50, :if => Proc.new{ |user| user.name.present?} }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, :if => Proc.new{ |user| user.email.present? } }, uniqueness: { case_sensitive: false } 

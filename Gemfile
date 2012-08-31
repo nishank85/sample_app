@@ -11,7 +11,8 @@ gem 'therubyracer', :platforms => :ruby
 group :development, :test do
   gem 'sqlite3', '1.3.5'
 end
-
+gem 'activemerchant'
+gem 'fancybox-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,6 +41,7 @@ group :production do
   gem 'pg', '0.12.2'
 end
 
+gem 'pry'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 # Gems used only for assets and not required

@@ -17,5 +17,12 @@ SampleApp::Application.routes.draw do
 	match '/help',    to: 'static_pages#help'
 	match '/about',   to: 'static_pages#about'
 	match '/contact', to: 'static_pages#contact'
+
+	match '/pay_via_paypal',to: "users#pay_via_paypal",:as => :pay_via_paypal
+
+    match '/confirm_payment',:to => "users#confirm_payment",:as => :confirm_payment
+
+    match '/cancel_payment',:to => "users#cancel_payment",:as => :cancel_payment
+     match '/iframe',:to => "users#iframe",:as => :iframe
 # match '/microposts' to: ''
 end

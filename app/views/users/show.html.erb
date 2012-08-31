@@ -10,8 +10,9 @@
     <section>
         <%= render 'shared/stats' %>
     </section>
-
+    <a class="iframe" href="/iframe" > IFRAME </a>
   </aside>
+   
   <div class ="span8">
   	<%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
@@ -23,3 +24,12 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+     $('a.iframe').bind('click',function(event) {
+       event.preventDefault();
+       $.fancybox({ href: '/iframe'}, { type: 'iframe', width: 1030, height: '90%', padding: 0 })
+    })
+   })
+<%end%>

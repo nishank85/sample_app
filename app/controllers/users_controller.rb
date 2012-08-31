@@ -27,6 +27,16 @@ before_filter :admin_user,     only: :destroy
     end
   end
 
+  def pay_via_paypal
+    response = ::PAYPAL_EXPRESS.setup_purchase(200,
+      :ip => request.remote_ip,
+      :return_url => confirm_payment_url,
+      :cancel_return_url => cancel_payment_url
+    )
+    binding.pry
+    redirect_to ::PAYPAL_EXPRESS.redirect_url_for(response.token)
+  end
+    
   def edit
   end
 
@@ -41,6 +51,8 @@ before_filter :admin_user,     only: :destroy
     end
   end
 
+ def iframe
+ end
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
